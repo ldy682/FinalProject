@@ -39,7 +39,6 @@ export class PigFormComponent implements OnInit{
   onSubmit(){
     this.service.add(this.form.value)
     if(!this.lock){
-      console.log("in the on submit func")
       this.service.addLocation(this.form.value)
     }
   }
@@ -47,7 +46,7 @@ export class PigFormComponent implements OnInit{
     this.http.get<Object>('https://272.selfip.net/apps/jpfG11Tlm6/collections/locations/documents/')
     .subscribe((data:any)=>{
       this.locations = data
-      console.log(this.locations)
+
     })
   }
   checkLocation(evt:any){

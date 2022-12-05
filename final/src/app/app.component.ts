@@ -13,7 +13,6 @@ export class AppComponent implements OnInit{
 
   constructor(private http: HttpClient, private unlock: FormService, location: PlatformLocation){
     location.onPopState(()=>{
-      console.log("testing")
       this.unlock.close();
     }) 
   }

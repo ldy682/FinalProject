@@ -76,9 +76,6 @@ export class TableComponent implements OnInit{
 
   ngOnInit() {
     this.get()
-    // .subscribe((data)=>
-    // this.reports = data);
-    // console.log("in table", this.reports)
   }
 
  

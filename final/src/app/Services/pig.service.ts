@@ -25,7 +25,6 @@ export class PigService {
     "time": `${form.time}`,
     "status": `${form.status}`}}
     ).subscribe((data:any)=>{
-      console.log(data)
       })
     this.router.navigate([''])
     
@@ -33,14 +32,12 @@ export class PigService {
   delete(id:any){
     this.http.delete(`https://272.selfip.net/apps/jpfG11Tlm6/collections/reports/documents/${id}`)
       .subscribe((data:any)=>{
-        console.log("deleted")
       })
   }
 
   deleteLocations(loc:any){
     this.http.delete(`https://272.selfip.net/apps/jpfG11Tlm6/collections/locations/documents/${loc}`)
     .subscribe((data:any)=>{
-      console.log("deleted")
     })
   }
   
@@ -59,7 +56,6 @@ export class PigService {
     "status": "claimed"}}
     )
     .subscribe((data:any)=>{
-      console.log("claimed")
     })
   }
 
@@ -71,7 +67,6 @@ export class PigService {
     "longitude": `${form.longitude}`,
     "latitude": `${form.latitude}`}}
     ).subscribe((data:any)=>{
-      console.log(data)
       })
   }
 }
