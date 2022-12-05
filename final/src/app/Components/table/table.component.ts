@@ -11,6 +11,8 @@ import { FormService } from 'src/app/Services/form.service';
 export class TableComponent implements OnInit{
   reports:any = [];
   clicked:boolean = false
+  arr:any = []
+  filter:any = "Default Filter"
 
 
 
@@ -22,13 +24,61 @@ export class TableComponent implements OnInit{
     })
   }
 
+  changeFilters(evt:any){
+    if(evt.target.value == "reported by"){
+      var sortedReports = this.reports.sort((a:any, b:any)=>{
+        if(a.key.toLowerCase()==b.key.toLowerCase())
+        return 0
+
+        return a.key.toLowerCase()>b.key.toLowerCase()?1:-1
+      })
+      this.reports = sortedReports
+    }
+    else if(evt.target.value == "location"){
+      let sortedReports = this.reports.sort((a:any, b:any)=>{
+        if(a.data.location.toLowerCase()==b.data.location.toLowerCase())
+        return 0
+
+        return a.data.location.toLowerCase()>b.data.location.toLowerCase()?1:-1
+      })
+      
+    }
+      
+    // }
+    else if(evt.target.value == "time"){
+      this.reports.sort((a:any, b:any)=>{
+        if(a.data.time==b.data.time)
+        return 0
+
+        return a.data.time>b.data.time?1:-1
+      })
+    }
+    else if(evt.target.value == "status"){
+      this.reports.sort((a:any, b:any)=>{
+        if(a.data.status==b.data.status)
+        return 0
+        return a.data.status>b.data.status?1:-1
+      })
+    }
+    // else{
+      
+    // }
+  }
+
+  stringSort(a:string,b:string){
+    if(a===b)
+    {
+      return 0
+    }
+    return a>b?1:-1
+  }
+
 
   ngOnInit() {
     this.get()
     // .subscribe((data)=>
     // this.reports = data);
     // console.log("in table", this.reports)
-    // this.ps.deleteLocations("SFU-Burnaby")
   }
 
  

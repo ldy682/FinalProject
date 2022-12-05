@@ -31,6 +31,13 @@
         </tbody>
 
     </table>
+    <select (change)="changeFilters($event)" class="form-select" style="float:right;margin-right: 10%; margin-top: 10px; width: 200px;">
+        <option value="" disabled hidden selected>Filters</option>
+        <option value="reported by">Name  Filter</option>
+        <option value="location">Location Filter</option>
+        <option value="time">Time Filter</option>
+        <option value="status">Status Filter</option>
+    </select>
     <button 
         class="btn btn-primary" 
         style="margin-left: 10%; margin-top: 20px;" 
