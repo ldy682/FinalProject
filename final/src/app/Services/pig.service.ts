@@ -26,7 +26,8 @@ export class PigService {
     "status": `${form.status}`}}
     ).subscribe((data:any)=>{
       })
-    this.router.navigate([''])
+      setTimeout(()=>this.router.navigate(['']),1000)
+    
     
   }
   delete(id:any){
