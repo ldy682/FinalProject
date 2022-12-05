@@ -1,35 +1,66 @@
-<form>
-    <fieldset>
-        <div class="form-group">
-          <label for="name">Name</label>
-          <input type="name" class="form-control" id="name" placeholder="Enter name">
-          <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
-        </div>
-        <div class="form-group">
-          <label for="phoneNumber">Phone Number</label>
-          <input type="number" class="form-control" id="phoneNumber" placeholder="Enter Phone Number">
-        </div>
-        <div class="form-group">
-          <label for="pidInput">Pig Breed</label>
-          <input type="string" class="form-control" id="pidInput" placeholder="Enter the Pig's Breed">
-        </div>
-        <div class="form-group">
-          <label for="pidInput">Pig ID</label>
-          <input type="number" class="form-control" id="pidInput" placeholder="Enter Pid ID behind the Pig">
-        </div>
-        <div class="form-group">
-          <label for="pidInput">Pig ID</label>
-          <input type="number" class="form-control" id="pidInput" placeholder="Enter Pid ID behind the Pig">
-        </div>
-        <!-- <div class="form-group form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">Check me out</label>
-        </div> -->
-        <div class="form-group">
-            <label for="exampleFormControlTextarea1">Extra information</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-        <button type="submit" class="btn btn-danger" style="float: right" routerLink="/">Back</button>
-    </fieldset>
-  </form>   
+<section>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <fieldset>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="name" class="form-control" formControlName="formName" id="name" placeholder="2-12 letters">
+          </div>
+          <div class="form-group">
+            <label for="phoneNumber">Phone Number</label>
+            <input type="number" class="form-control" formControlName="phNum" id="phoneNumber" placeholder="10 digits">
+          </div>
+          <div class="form-group">
+            <label for="pigBreed">Pig Breed</label>
+            <input type="string" class="form-control" formControlName="breed" id="pigBreed" placeholder="Enter the Pig's Breed">
+          </div>
+          <div class="form-group">
+            <label for="pidInput">Pig ID</label>
+            <input type="number" class="form-control" formControlName="pID" id="pidInput" placeholder="Greater Than or Equal to 0">
+          </div>
+          <div class="form-group">
+            <label for="pidInput">Location</label>
+            <!-- <select FormControlName="selectedLocation" class="form-select">
+              <option selected [value]="0">New Location</option>
+              <option *ngFor="let location of locations" [value]="location.key">
+                {{location.key}}
+              </option>
+            </select> -->
+            <input class="form-control" list="locations" (input)="checkLocation($event)" formControlName="location">
+            <datalist id="locations">
+              <option *ngFor="let location of locations" [value]="location.key">
+                {{location.key}}
+              </option>
+            </datalist>
+          </div>
+
+          <div class="form-group">
+            <label for="longitude">Longitude</label>
+            <input type="number" class="form-control" [readOnly]="lock == true ? true: false" formControlName="longitude" id="longitude" placeholder="number between -180 to 180" [(ngModel)]="inputLong">
+          </div>
+          <div class="form-group">
+            <label for="latitude">Latitude</label>
+            <input type="number" class="form-control" [readOnly]="lock == true ? true: false" formControlName="latitude" id="latitude" placeholder="number between -90 to 90" [(ngModel)]="inputLat">
+          </div>
+          <!-- <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+          </div> -->
+          <div class="form-group">
+              <label for="exampleFormControlTextarea1">Extra information</label>
+              <textarea class="form-control" formControlName="moreDetails" id="exampleFormControlTextarea1" rows="3"></textarea>
+          </div>
+          <button 
+          type="submit" 
+          class="btn btn-primary"
+          [disabled]="!form.valid"
+          >Submit</button>
+          <div class="alert alert-success" [hidden]="!form.valid" role="alert" style="width:200px; float: right">
+            Valid Inputs
+          </div>
+          <div class="alert alert-danger" [hidden]="form.valid" role="alert" style="width:200px; float: right">
+            Invalid Inputs<br>
+          </div>
+        </fieldset>
+      </form>   
+      <!-- <button class="btn btn-danger back-button" routerLink="/">Back</button> -->
+</section>

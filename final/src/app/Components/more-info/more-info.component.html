@@ -1,0 +1,43 @@
+<section class="card" *ngIf="report">
+    <span>
+        <strong>Name:</strong>
+    </span>
+    <span>{{report.key}}<br><br></span>
+    
+    <span>
+        <strong>Phone Number:</strong>
+    </span>
+    <span>{{report.data.phone}}<br><br></span>
+    
+    <span>
+        <strong>Pig ID:</strong>
+    </span>
+    <span>{{report.data.pid}}<br><br></span>
+    
+    <span>
+        <strong>Status:</strong>
+    </span>
+    <span>{{report.data.status}}<br><br></span>
+    
+    <span>
+        <strong>Time Reported:</strong>
+    </span>
+    <span>{{report.data.time | date:'MMM d, y, h:mm a'}}<br><br></span>
+    
+    <span>
+        <strong>Longitude:</strong>
+    </span>
+    <span>{{report.data.longitude}}<br><br></span>
+    
+    <span>
+        <strong>Latitude:</strong>
+    </span>
+    <span>{{report.data.latitude}}<br><br></span>
+
+    <span>
+        <strong>More Information:</strong>
+    </span>
+    <span>{{report.data.details}}<br><br></span>
+    
+    
+</section>

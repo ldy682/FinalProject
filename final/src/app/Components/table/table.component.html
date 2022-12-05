@@ -1,23 +1,42 @@
-<table class="table" style="margin-left: 25%; width: 50%">
-    <thead>
-        <th>Location</th>
-        <th>Reported By</th>
-        <th>Time Reported</th>
-        <th>Status</th>
-    </thead>
-    <tbody>
-        <!-- <tr *ngFor="">
-            
-        </tr> -->
-    </tbody>
-    <tfoot style="margin-top: 50px;">
-        
-    </tfoot>
-</table>
-<button 
-    class="btn btn-primary" 
-    style="margin-left: 25%; margin-top: 20px;" 
-    routerLink="/form"
-    >
-        ADD PIG REPORT
-    </button>
+<div style="width: auto">
+    <table class="table table-striped" style="margin: auto; width: 80%">
+        <thead class="table-dark">
+            <tr>
+                <th>Location</th>
+                <th>Reported By</th>
+                <th>Time Reported</th>
+                <th>Status</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let details of reports">
+                <td>{{details.data.location}}</td>
+                <td>{{details.key}}</td>
+                <td>{{details.data.time | date:'MMM d, y, h:mm a'}}</td>
+                <td *ngIf="details.data.status == 'not claimed'">
+                    <button class="btn btn-secondary" (click)="changeStatus(details, $event)">Claim Pig</button>
+                </td>
+                <td *ngIf="details.data.status == 'claimed'">
+                    <button class="btn btn-secondary" disabled>Claimed &nbsp;</button>
+                </td>
+                <td>
+                    <button class="btn btn-info" style="color: white" routerLink="/info/{{details.key}}">More Info</button>
+                </td>
+                <td>
+                    <button class="btn btn-danger" (click)="deleteReport(details.key)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
+    <button 
+        class="btn btn-primary" 
+        style="margin-left: 10%; margin-top: 20px;" 
+        routerLink="/form"
+        (click)="unlockGuard()"
+        >
+            ADD PIG REPORT
+        </button>
+</div>

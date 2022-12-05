@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { PigService } from 'src/app/Services/pig.service';
 
 @Component({
   selector: 'app-pig',
@@ -6,8 +7,11 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./pig.component.css']
 })
 export class PigComponent implements OnInit{
-  @Input() pig:any
+  @Input() report:any
   @Output() delete = new EventEmitter()
+  constructor(){
+
+  }
   ngOnInit(): void {
     
   }
